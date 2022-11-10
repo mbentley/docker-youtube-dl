@@ -2,11 +2,11 @@
 FROM mbentley/alpine:latest
 LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
-RUN apk add --no-cache python3 &&\
+RUN apk add --no-cache ffmpeg python3 &&\
   ln -s /usr/bin/python3 /usr/bin/python &&\
   wget -q https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl &&\
   chmod a+rx /usr/local/bin/youtube-dl
 
-WORKDIR ["/data"]
+WORKDIR /data
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 CMD ["--help"]
